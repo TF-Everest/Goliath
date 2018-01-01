@@ -16,8 +16,6 @@ export class APIRuntime extends Runtime {
             .MYSQL_CONNECTION_STRING as string)
         await this.datastore.open()
 
-        await new Promise((resolve, reject) => {})
-
         // Construct the Express Application
         this.application = Express()
         this.executor = new ExpressExecutor()
