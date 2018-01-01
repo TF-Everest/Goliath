@@ -1,8 +1,8 @@
 import { PingController } from "../controllers/PingController"
+import { RequestInjector } from "../middleware/RequestInjector"
 import * as Express from "express"
 import { Server } from "http"
 import { ExpressExecutor, MySQLDatastore, Runtime } from "strontium/lib/src"
-import { RequestInjector } from "../middleware/RequestInjector"
 
 export class APIRuntime extends Runtime {
     private application: Express.Application
@@ -16,12 +16,14 @@ export class APIRuntime extends Runtime {
             .MYSQL_CONNECTION_STRING as string)
         await this.datastore.open()
 
+        await new Promise((resolve, reject) => {})
+
         // Construct the Express Application
         this.application = Express()
         this.executor = new ExpressExecutor()
 
         let request_injector = new RequestInjector(this.datastore)
-        this.application.use(request_injector.middleware)
+        this.application.use(request_injector.middleware())
 
         // Setup routing
         this.application.get("/ping", this.executor.middleware(PingController))

@@ -1,5 +1,5 @@
-import { GoliathResponse } from "../responses/GoliathResponse"
 import { GoliathRequest } from "../middleware/GoliathRequest"
+import { GoliathResponse } from "../responses/GoliathResponse"
 import { EndpointController } from "strontium/lib/src"
 
 export class PingController extends EndpointController<
