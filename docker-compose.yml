@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+    mysql:
+        image: mysql:5.7.19
+        environment:
+          - MYSQL_ROOT_PASSWORD=goliath
+          - MYSQL_DATABASE=goliath
+          - MYSQL_USER=goliath
+          - MYSQL_PASSWORD=goliath
+        volumes:
+          - ./.mysql_data:/var/lib/mysql
+        ports:
+          - 3306:3306
