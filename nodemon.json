@@ -1,0 +1,7 @@
+{
+  "watch": "src/**/*.ts",
+  "ignore": "tests/**/*.test.ts",
+  "execMap": {
+    "ts": "ts-node"
+  }
+}

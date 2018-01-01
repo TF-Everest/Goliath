@@ -4,7 +4,7 @@
   "description": "Goliath is an integrated unit management engine for ARMA III MILSIM communities.",
   "main": "index.js",
   "scripts": {
-    "develop": "nodemon --watch 'src/**/*.ts' --ignore 'tests/**/*.test.ts' --exec 'ts-node' src/index.ts -- -a",
+    "develop": "nodemon src/index.ts -- -a",
     "lint": "./node_modules/.bin/prettier --list-different --config ./prettier.json \"{src,tests}/**/*.ts\" && tslint --project ./tsconfig.json \"{src,tests}/**/*.ts\"",
     "fix-lint": "./node_modules/.bin/prettier --config ./prettier.json --write \"{src,tests}/**/*.ts\" && tslint --fix --project ./tsconfig.json \"{src,tests}/**/*.ts\"",
     "migrate": "knex migrate:latest"
