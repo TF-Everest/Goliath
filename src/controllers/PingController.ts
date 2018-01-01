@@ -1,4 +1,5 @@
 import { GoliathResponse } from "../responses/GoliathResponse"
+import { GoliathRequest } from "../middleware/GoliathRequest"
 import { EndpointController } from "strontium/lib/src"
 
 export class PingController extends EndpointController<
@@ -6,7 +7,7 @@ export class PingController extends EndpointController<
         message: string
     }>
 > {
-    async extract(): Promise<void> {}
+    async extract(request: GoliathRequest) {}
 
     async authorize(): Promise<boolean> {
         return true

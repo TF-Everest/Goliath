@@ -2,6 +2,7 @@ import { PingController } from "../controllers/PingController"
 import * as Express from "express"
 import { Server } from "http"
 import { ExpressExecutor, MySQLDatastore, Runtime } from "strontium/lib/src"
+import { RequestInjector } from "../middleware/RequestInjector"
 
 export class APIRuntime extends Runtime {
     private application: Express.Application
@@ -19,6 +20,10 @@ export class APIRuntime extends Runtime {
         this.application = Express()
         this.executor = new ExpressExecutor()
 
+        let request_injector = new RequestInjector(this.datastore)
+        this.application.use(request_injector.middleware)
+
+        // Setup routing
         this.application.get("/ping", this.executor.middleware(PingController))
 
         this.server = this.application.listen(
