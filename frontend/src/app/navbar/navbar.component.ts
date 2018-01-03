@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router"
+import { tokenNotExpired } from "angular2-jwt"
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  isAuthenticated() {
+    return tokenNotExpired()
+  }
+
+  signOut() {
+    localStorage.removeItem('token')
+    this.router.navigate(['/sign-in'])
   }
 
 }

@@ -11,7 +11,8 @@
   <div class="uk-navbar-right">
 
     <ul class="uk-navbar-nav">
-      <li routerLinkActive="uk-active" class="uk-active"><a routerLink="/sign-in">Sign In</a></li>
+      <li routerLinkActive="uk-active" (click)="signOut()" *ngIf="isAuthenticated()"><a>Sign Out</a></li>
+      <li routerLinkActive="uk-active" *ngIf="!isAuthenticated()"><a routerLink="/sign-in"></a></li>
     </ul>
 
   </div>

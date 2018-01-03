@@ -18,4 +18,14 @@ html, body, app-root {
 .sidenav-container {
   display: inline-block;
   height: calc(100vh - 130px);
+  vertical-align: top;
+}
+
+.viewport-content-container {
+  box-sizing: border-box;
+  display: inline-block;
+  height: calc(100vh - 130px);
+  width: calc(100vw - 305px);
+  vertical-align: top;
+  padding: 15px;
 }

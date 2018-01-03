@@ -11,6 +11,12 @@ exports.up = function(knex) {
         table.string("nationality")
         table.string("locality")
         table.timestamps()
+
+        table.boolean("is_recruiter").default(false)
+        table.boolean("is_drill_instructor").default(false)
+        table.boolean("is_jag").default(false)
+        table.boolean("is_administrator").default(false)
+        table.boolean("is_suspended").default(false)
     })
 }
 

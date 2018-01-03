@@ -13,7 +13,7 @@ export class JWTParser {
             if (cast_req.headers.authorization) {
                 try {
                     let valid_token: any = verify(
-                        cast_req.headers.authorization,
+                        cast_req.headers.authorization.split(" ")[1],
                         this.secret_key
                     )
                     ;(req as GoliathRequest).authenticated_token = {
