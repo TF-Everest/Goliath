@@ -15,9 +15,11 @@ export class SteamService {
             }&steamids=${steam_id}`
         )
 
+        let player = resp.data.response.players[0]
+
         return {
-            full_name: resp.data.realname,
-            current_game_id: resp.data.gameid,
+            full_name: player.realname || "",
+            current_game_id: player.gameid || "",
         }
     }
 }

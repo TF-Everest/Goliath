@@ -7,7 +7,7 @@ export class PingController extends EndpointController<
         message: string
     }>
 > {
-    async extract(request: GoliathRequest) {}
+    async extract(request: GoliathRequest): Promise<void> {}
 
     async authorize(): Promise<boolean> {
         return true

@@ -1,6 +1,7 @@
 import { SteamService } from "./SteamService"
 import { UserModel } from "../models/UserModel"
 import { UserRepository } from "../repositories/UserRepository"
+import { parseName } from "humanparser"
 import { Queryable } from "strontium/lib/src"
 
 export class UserService {
@@ -10,6 +11,14 @@ export class UserService {
     constructor(private store: Queryable) {
         this.user_repository = new UserRepository(this.store)
         this.steam_service = new SteamService()
+    }
+
+    async getUserBySteamID(steam_id: string): Promise<UserModel> {
+        let [user] = await this.user_repository.read([
+            ["steam_id", "=", steam_id],
+        ])
+
+        return user
     }
 
     async createOrRetrieveUserBySteamID(steam_id: string): Promise<UserModel> {
@@ -24,20 +33,13 @@ export class UserService {
                 steam_id
             )
 
-            let created_id = await this.user_repository.create({
-                first_name: steam_profile.full_name.split(" ")[0],
-                last_name: steam_profile.full_name
-                    .split(" ")
-                    .slice(1)
-                    .join(" "),
+            let { firstName, lastName } = parseName(steam_profile.full_name)
+
+            return await this.user_repository.create({
+                first_name: firstName,
+                last_name: lastName,
                 steam_id: steam_id,
             })
-
-            let [created_user] = await this.user_repository.read([
-                ["id", "=", created_id],
-            ])
-
-            return created_user
         }
     }
 }

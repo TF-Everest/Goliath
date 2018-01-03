@@ -1,8 +1,12 @@
-import { PingController } from "../controllers/PingController"
+import { JWTParser } from "../middleware/JWTParser"
+import { OAuthResponseController } from "../controllers/OAuthResponseController"
 import { RequestInjector } from "../middleware/RequestInjector"
 import * as Express from "express"
 import { Server } from "http"
 import { ExpressExecutor, MySQLDatastore, Runtime } from "strontium/lib/src"
+
+import { OAuthRequestController } from "../controllers/OAuthRequestController"
+import { PingController } from "../controllers/PingController"
 
 export class APIRuntime extends Runtime {
     private application: Express.Application
@@ -23,8 +27,21 @@ export class APIRuntime extends Runtime {
         let request_injector = new RequestInjector(this.datastore)
         this.application.use(request_injector.middleware())
 
+        let jwt_parser = new JWTParser(process.env
+            .AUTHENTICATION_TOKEN_SECRET as string)
+        this.application.use(jwt_parser.middleware())
+
         // Setup routing
         this.application.get("/ping", this.executor.middleware(PingController))
+
+        this.application.get(
+            "/openid/steam",
+            this.executor.middleware(OAuthRequestController)
+        )
+        this.application.get(
+            "/openid/steam/response",
+            this.executor.middleware(OAuthResponseController)
+        )
 
         this.server = this.application.listen(
             process.env.HTTP_LISTEN_PORT || 8080
