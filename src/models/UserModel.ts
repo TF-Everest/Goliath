@@ -13,6 +13,12 @@ export interface UserModel {
 
     timezone: number
 
+    is_administrator: boolean
+    is_drill_instructor: boolean
+    is_jag: boolean
+    is_recruiter: boolean
+    is_suspended: boolean
+
     created_at: Date
     updated_at: Date
 }

@@ -1,3 +1,4 @@
+import { GetUserController } from "../controllers/GetUserController"
 import { JWTParser } from "../middleware/JWTParser"
 import { OAuthResponseController } from "../controllers/OAuthResponseController"
 import { RequestInjector } from "../middleware/RequestInjector"
@@ -41,6 +42,11 @@ export class APIRuntime extends Runtime {
         this.application.get(
             "/openid/steam/response",
             this.executor.middleware(OAuthResponseController)
+        )
+
+        this.application.get(
+            "/users/:user_id",
+            this.executor.middleware(GetUserController)
         )
 
         this.server = this.application.listen(

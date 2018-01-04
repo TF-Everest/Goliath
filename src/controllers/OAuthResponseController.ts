@@ -110,15 +110,11 @@ export class OAuthResponseController extends EndpointController<void> {
 
             // The login was valid - redirect to the success page for the client app to handle
             throw new ContentMoved(
-                `${
-                    process.env.FRONTEND_URL
-                }/auth/success?token=${access_token}`
+                `${process.env.FRONTEND_URL}/auth/success?token=${access_token}`
             )
         } else {
             // The login was not valid - redirect to the failed page
-            throw new ContentMoved(
-                `${process.env.FRONTEND_URL}/auth/failure`
-            )
+            throw new ContentMoved(`${process.env.FRONTEND_URL}/auth/failure`)
         }
     }
 }

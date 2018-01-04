@@ -17,6 +17,11 @@ export class UserRepository extends TableRepository<UserModel> {
                 "nationality",
                 "steam_id",
                 "timezone",
+                "is_administrator",
+                "is_drill_instructor",
+                "is_jag",
+                "is_recruiter",
+                "is_suspended",
                 "updated_at",
             ],
             "id"
