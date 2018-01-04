@@ -1,9 +1,11 @@
+import { RankModel } from "../models/RankModel"
 import { UserModel } from "../models/UserModel"
 import * as Moment from "moment"
 import { Renderable } from "strontium/lib/src"
+import { Rank } from "./Rank"
 
 export class User extends Renderable {
-    constructor(private viewer: string, private user: UserModel) {
+    constructor(private viewer: string, private user: UserModel, private rank: RankModel) {
         super()
     }
 
@@ -21,6 +23,7 @@ export class User extends Renderable {
             steam_id: this.user.steam_id,
             age: Moment().diff(Moment(this.user.date_of_birth), "years"),
             location: this.user.locality,
+            rank: await new Rank(this.rank).render(),
             permissions: {
                 is_recruiter: !!this.user.is_recruiter,
                 is_drill_instructor: !!this.user.is_drill_instructor,

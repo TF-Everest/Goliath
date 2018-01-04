@@ -4,6 +4,8 @@ import { User } from "../responses/User"
 import { UserRepository } from "../repositories/UserRepository"
 import { EndpointController, MySQLDatastore } from "strontium/lib/src"
 import { a, mustBe } from "zafiro-validators"
+import { RankService } from "../services/RankService"
+import { UserService } from "../services/UserService"
 
 export class GetUserController extends EndpointController<
     GoliathResponse<User>
@@ -36,6 +38,9 @@ export class GetUserController extends EndpointController<
     @mustBe(a.any())
     private user_store: UserRepository
 
+    @mustBe(a.any())
+    private rank_service: RankService
+
     async extract(req: GoliathRequest): Promise<void> {
         this.requested_user_id = req.params.user_id
 
@@ -46,6 +51,7 @@ export class GetUserController extends EndpointController<
 
     async init(): Promise<void> {
         this.user_store = new UserRepository(this.store)
+        this.rank_service = new RankService(this.store)
     }
 
     async authorize(): Promise<boolean> {
@@ -61,6 +67,8 @@ export class GetUserController extends EndpointController<
             ["id", "=", this.authenticated_user.user_id],
         ])
 
+        let latest_rank = await this.rank_service.getCurrentRank(user.id)
+
         let permission_level = "public"
 
         if (user.id === this.requested_user_id) {
@@ -71,6 +79,6 @@ export class GetUserController extends EndpointController<
             permission_level = "admin"
         }
 
-        return new GoliathResponse(new User(permission_level, user))
+        return new GoliathResponse(new User(permission_level, user, latest_rank))
     }
 }

@@ -1,3 +1,4 @@
+import { PromotionModel } from "../models/PromotionModel"
 import { SteamService } from "./SteamService"
 import { UserModel } from "../models/UserModel"
 import { UserRepository } from "../repositories/UserRepository"
@@ -42,4 +43,5 @@ export class UserService {
             })
         }
     }
+    
 }

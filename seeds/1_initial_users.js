@@ -1,8 +1,7 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('users').del().then(function() {
-      return knex('users').insert([
+  return knex('users').insert([
         {
             email_address: "striker.a@tf-everest.com",
             date_of_birth: "1996-08-13",
@@ -29,6 +28,5 @@ exports.seed = function(knex, Promise) {
             is_recruiter: false,
             is_jag: true
         }
-      ])
-  })
+  ])
 }
