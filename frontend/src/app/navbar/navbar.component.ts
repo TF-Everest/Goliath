@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { tokenNotExpired } from "angular2-jwt"
+import { ActiveUserService } from "../active-user.service"
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,10 @@ import { tokenNotExpired } from "angular2-jwt"
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  private is_loading: boolean = true
+  private current_user
+
+  constructor(private router: Router, private activeUserService: ActiveUserService) { }
 
   ngOnInit() {
   }
@@ -20,6 +24,7 @@ export class NavbarComponent implements OnInit {
 
   signOut() {
     localStorage.removeItem('token')
+    this.activeUserService.clearUser()
     this.router.navigate(['/sign-in'])
   }
 

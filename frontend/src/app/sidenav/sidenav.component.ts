@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActiveUserService } from "../active-user.service"
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  private is_loading: boolean = true
+  private current_user
+
+  constructor(private activeUserService: ActiveUserService) { }
 
   ngOnInit() {
+    this.is_loading = true
+
+    this.activeUserService.getCurrentUser().subscribe((data) => {
+      this.current_user = data
+      this.is_loading = false
+    })
   }
 
 }

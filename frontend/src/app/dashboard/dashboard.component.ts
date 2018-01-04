@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { JwtHelper } from "angular2-jwt"
 import 'rxjs/add/operator/map'
 import { environment } from "../../environments/environment"
+import { ActiveUserService } from "../active-user.service"
 
 @Component({
   selector: 'app-dashboard',
@@ -13,26 +14,18 @@ export class DashboardComponent implements OnInit {
 
   private jwt_helper: JwtHelper
   private is_loading: boolean = true
-  private data: any
+  private current_user: any
 
-  constructor(public http: HttpClient) {
+  constructor(private http: HttpClient, private activeUserService: ActiveUserService) {
     this.jwt_helper = new JwtHelper()
   }
 
   ngOnInit() {
-    let token = this.jwt_helper.decodeToken(localStorage.getItem("token"))
-
-    this.getUserData(token.user_id)
-      .subscribe((data) => {
-        this.data = data
-      })
-  }
-
-  getUserData(user_id: number) {
     this.is_loading = true
-    return this.http.get(`${environment.api_address}/users/${user_id}`).map((res: any) => {
+    this.activeUserService.getCurrentUser().subscribe((data) => {
+      this.current_user = data
+
       this.is_loading = false
-      return res.data
     })
   }
 

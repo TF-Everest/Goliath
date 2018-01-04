@@ -1,4 +1,4 @@
-<ul class="uk-nav uk-nav-default sidenav">
+<ul class="uk-nav uk-nav-default sidenav" *ngIf="!is_loading">
 
   <li class="uk-nav-header">General</li>
   <li routerLinkActive="uk-active"><a routerLink="/dashboard">Dashboard</a></li>
@@ -23,17 +23,24 @@
   <li routerLinkActive="uk-active"><a routerLink="/platoon/disciplinary">Disciplinary Action</a></li>
   <li routerLinkActive="uk-active"><a routerLink="/platoon/briefings">Briefings and Materials</a></li>
 
-  <li class="uk-nav-header">Drill Instructor</li>
-  <li routerLinkActive="uk-active"><a routerLink="/di/training-rotation">Training Scheduling</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/di/manuals">Instructor Handbooks</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/di/classes">Class Files</a></li>
+  <li class="uk-nav-header" *ngIf="current_user.permissions.is_drill_instructor">Drill Instructor</li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_drill_instructor"><a routerLink="/di/training-rotation">Training Scheduling</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_drill_instructor"><a routerLink="/di/manuals">Instructor Handbooks</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_drill_instructor"><a routerLink="/di/classes">Class Files</a></li>
 
-  <li class="uk-nav-header">Recruitment</li>
-  <li routerLinkActive="uk-active"><a routerLink="/recruitment/candidates">Candidate Tracking</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/recruitment/openings">Opening Management</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/recruitment/classes">Class Files</a></li>
+  <li class="uk-nav-header" *ngIf="current_user.permissions.is_recruiter">Recruitment</li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_recruiter"><a routerLink="/recruitment/candidates">Candidate Tracking</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_recruiter"><a routerLink="/recruitment/openings">Opening Management</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_recruiter"><a routerLink="/recruitment/classes">Class Files</a></li>
+
+  <li class="uk-nav-header" *ngIf="current_user.permissions.is_jag">Judge Advocate General</li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_jag"><a routerLink="/jag/cases">Case Management</a></li>
 
   <li class="uk-nav-header">Administration</li>
-  <li routerLinkActive="uk-active"><a routerLink="/admin/personnel">Personnel Management</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_administrator"><a routerLink="/admin/personnel">Personnel Management</a></li>
 
+</ul>
+
+<ul class="uk-nav uk-nav-default sidenav uk-text-center" *ngIf="is_loading">
+  <div class="uk-spinner"></div>
 </ul>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from "../environments/environment"
+import { ActiveUserService } from "./active-user.service"
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -37,7 +38,8 @@ import { AuthenticatorComponent } from './authenticator/authenticator.component'
     })
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    ActiveUserService
   ],
   bootstrap: [
     AppComponent
