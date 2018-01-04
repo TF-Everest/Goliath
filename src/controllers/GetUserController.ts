@@ -17,12 +17,18 @@ export class GetUserController extends EndpointController<
     private requested_user_id: number
 
     @mustBe(
-        a
-            .number()
-            .positive()
-            .integer()
+        a.object().keys({
+            user_id: a
+                .number()
+                .positive()
+                .integer(),
+            steam_id: a.string(),
+        })
     )
-    private authenticated_user: number
+    private authenticated_user: {
+        user_id: number
+        steam_id: string
+    }
 
     @mustBe(a.any())
     private store: MySQLDatastore
@@ -33,7 +39,7 @@ export class GetUserController extends EndpointController<
     async extract(req: GoliathRequest): Promise<void> {
         this.requested_user_id = req.params.user_id
 
-        this.authenticated_user = req.authenticated_token.user_id
+        this.authenticated_user = req.authenticated_token
 
         this.store = req.mysql
     }
@@ -43,7 +49,7 @@ export class GetUserController extends EndpointController<
     }
 
     async authorize(): Promise<boolean> {
-        return true
+        return this.authenticated_user !== undefined
     }
 
     async handle(): Promise<GoliathResponse<User>> {
@@ -52,7 +58,7 @@ export class GetUserController extends EndpointController<
         ])
 
         let [authenticated_user] = await this.user_store.read([
-            ["id", "=", this.authenticated_user],
+            ["id", "=", this.authenticated_user.user_id],
         ])
 
         let permission_level = "public"

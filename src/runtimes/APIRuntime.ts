@@ -2,6 +2,7 @@ import { GetUserController } from "../controllers/GetUserController"
 import { JWTParser } from "../middleware/JWTParser"
 import { OAuthResponseController } from "../controllers/OAuthResponseController"
 import { RequestInjector } from "../middleware/RequestInjector"
+import * as cors from "cors"
 import * as Express from "express"
 import { Server } from "http"
 import { ExpressExecutor, MySQLDatastore, Runtime } from "strontium/lib/src"
@@ -31,6 +32,8 @@ export class APIRuntime extends Runtime {
         let jwt_parser = new JWTParser(process.env
             .AUTHENTICATION_TOKEN_SECRET as string)
         this.application.use(jwt_parser.middleware())
+
+        this.application.use(cors())
 
         // Setup routing
         this.application.get("/ping", this.executor.middleware(PingController))

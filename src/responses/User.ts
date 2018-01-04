@@ -26,7 +26,7 @@ export class User extends Renderable {
                 is_drill_instructor: !!this.user.is_drill_instructor,
                 is_administrator: !!this.user.is_administrator,
                 is_suspended: !!this.user.is_suspended,
-            }
+            },
         }
     }
 }
