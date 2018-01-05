@@ -1,6 +1,7 @@
 import { GetUserController } from "../controllers/GetUserController"
 import { JWTParser } from "../middleware/JWTParser"
 import { OAuthResponseController } from "../controllers/OAuthResponseController"
+import { ReportInController } from "../controllers/ReportInController"
 import { RequestInjector } from "../middleware/RequestInjector"
 import * as cors from "cors"
 import * as Express from "express"
@@ -50,6 +51,11 @@ export class APIRuntime extends Runtime {
         this.application.get(
             "/users/:user_id",
             this.executor.middleware(GetUserController)
+        )
+
+        this.application.post(
+            "/users/:user_id/accountability",
+            this.executor.middleware(ReportInController)
         )
 
         this.server = this.application.listen(

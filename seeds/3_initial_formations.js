@@ -36,6 +36,11 @@ exports.seed = function(knex, Promise) {
                 callsign: "Warrior 4",
                 name: "Delta Team",
                 parent: 1
+            },
+            {
+                id: 7,
+                callsign: "Menace",
+                name: "Judge Advocate General"
             }
         ])
     .then(function () {
@@ -46,7 +51,7 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: true,
                 is_team_leadership: false,
                 name: "Platoon Leader",
-                occupied_by: 1
+                parent_formation: 2
             },
             {
                 id: 2,
@@ -54,7 +59,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: true,
                 is_team_leadership: false,
                 name: "Platoon Sergeant",
-                reports_to: 1
+                reports_to: 1,
+                parent_formation: 2
             },
             {
                 id: 3,
@@ -62,7 +68,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Team Leader",
-                reports_to: 2
+                reports_to: 2,
+                parent_formation: 3
             },
             {
                 id: 4,
@@ -70,7 +77,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: false,
                 name: "Combat Medic",
-                reports_to: 3
+                reports_to: 3,
+                parent_formation: 3
             },
             {
                 id: 5,
@@ -78,7 +86,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Weapons Specialist",
-                reports_to: 3
+                reports_to: 3,
+                parent_formation: 3
             },
             {
                 id: 6,
@@ -86,7 +95,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Communication Specialist",
-                reports_to: 3
+                reports_to: 3,
+                parent_formation: 3
             },
             {
                 id: 7,
@@ -94,7 +104,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Team Leader",
-                reports_to: 2
+                reports_to: 2,
+                parent_formation: 3
             },
             {
                 id: 8,
@@ -102,7 +113,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: false,
                 name: "Combat Medic",
-                reports_to: 7
+                reports_to: 7,
+                parent_formation: 4
             },
             {
                 id: 9,
@@ -110,7 +122,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Weapons Specialist",
-                reports_to: 7
+                reports_to: 7,
+                parent_formation: 4
             },
             {
                 id: 10,
@@ -118,7 +131,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Communication Specialist",
-                reports_to: 7
+                reports_to: 7,
+                parent_formation: 4
             },
             {
                 id: 11,
@@ -126,7 +140,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Team Leader",
-                reports_to: 2
+                reports_to: 2,
+                parent_formation: 5
             },
             {
                 id: 12,
@@ -134,7 +149,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: false,
                 name: "Combat Medic",
-                reports_to: 9
+                reports_to: 9,
+                parent_formation: 5
             },
             {
                 id: 13,
@@ -142,7 +158,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Weapons Specialist",
-                reports_to: 9
+                reports_to: 9,
+                parent_formation: 5
             },
             {
                 id: 14,
@@ -150,7 +167,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Communication Specialist",
-                reports_to: 9
+                reports_to: 9,
+                parent_formation: 5
             },
             {
                 id: 15,
@@ -158,7 +176,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Team Leader",
-                reports_to: 2
+                reports_to: 2,
+                parent_formation: 6
             },
             {
                 id: 16,
@@ -166,7 +185,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: false,
                 name: "Combat Medic",
-                reports_to: 13
+                reports_to: 13,
+                parent_formation: 6
             },
             {
                 id: 17,
@@ -174,7 +194,8 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Weapons Specialist",
-                reports_to: 13
+                reports_to: 13,
+                parent_formation: 6
             },
             {
                 id: 18,
@@ -182,15 +203,16 @@ exports.seed = function(knex, Promise) {
                 is_platoon_leadership: false,
                 is_team_leadership: true,
                 name: "Communication Specialist",
-                reports_to: 13
+                reports_to: 13,
+                parent_formation: 6
             },
             {
                 id: 19,
-                callsign: "Menace",
+                callsign: "Menace 6",
                 is_platoon_leadership: false,
                 is_team_leadership: false,
                 name: "Judge Advocate General",
-                occupied_by: 2
+                parent_formation: 7
             }
         ])
         })

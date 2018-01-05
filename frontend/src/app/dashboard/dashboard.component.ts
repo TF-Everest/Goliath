@@ -29,4 +29,15 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  reportIn() {
+    this.is_loading = true
+
+    this.activeUserService.reportIn().subscribe((data) => {
+      console.log(data)
+      this.current_user = data
+
+      this.is_loading = false
+    })
+  }
+
 }

@@ -46,7 +46,7 @@
     "mysql": "^2.15.0",
     "qs": "^6.5.1",
     "reflect-metadata": "^0.1.10",
-    "strontium": "^0.1.0",
+    "strontium": "^0.1.2",
     "typescript": "^2.6.2",
     "yargs": "^10.0.3",
     "zafiro-validators": "^1.1.0"

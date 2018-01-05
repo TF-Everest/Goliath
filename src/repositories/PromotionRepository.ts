@@ -1,5 +1,5 @@
-import { Queryable, TableRepository } from "strontium/lib/src"
 import { PromotionModel } from "../models/PromotionModel"
+import { Queryable, TableRepository } from "strontium/lib/src"
 
 export class PromotionRepository extends TableRepository<PromotionModel> {
     constructor(store: Queryable) {
@@ -18,7 +18,7 @@ export class PromotionRepository extends TableRepository<PromotionModel> {
                 "promotion_board_status",
                 "status",
                 "to_rank",
-                "user_id"
+                "user_id",
             ],
             "id"
         )

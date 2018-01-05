@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
             email_address: "striker.a@tf-everest.com",
             date_of_birth: "1996-08-13",
             first_name: "Alexander",
-            last_name: "Christie",
+            last_name: "Striker",
             nationality: "British",
             locality: "Great Britain",
             steam_id: "76561198021531457",

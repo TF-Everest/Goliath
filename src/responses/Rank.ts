@@ -15,8 +15,8 @@ export class Rank extends Renderable {
             requirements: {
                 time_in_grade: this.rank.days_in_grade,
                 time_in_service: this.rank.days_in_service,
-                promotion_board: !!this.rank.promotion_board_required
-            }
+                promotion_board: !!this.rank.promotion_board_required,
+            },
         }
     }
 }

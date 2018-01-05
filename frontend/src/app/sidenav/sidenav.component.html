@@ -6,22 +6,22 @@
   <li routerLinkActive="uk-active"><a routerLink="/my-team">My Team</a></li>
   <li routerLinkActive="uk-active"><a routerLink="/equipment">My Equipment</a></li>
 
-  <li class="uk-nav-header">Team Leadership</li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/personnel-files">Personnel Files</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/perstat">Personnel Status</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/operations">Operations</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/loadouts">Equipment Loadouts</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/disciplinary">Disciplinary Action</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/team/briefings">Briefings and Materials</a></li>
+  <li class="uk-nav-header" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership">Team Leadership</li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/personnel-files">Personnel Files</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/perstat">Personnel Status</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/operations">Operations</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/loadouts">Equipment Loadouts</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/disciplinary">Disciplinary Action</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_team_leadership"><a routerLink="/team/briefings">Briefings and Materials</a></li>
 
-  <li class="uk-nav-header">Platoon Leadership</li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/personnel-files">Personnel Files</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/personnel-files">Personnel Assignments</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/perstat">Personnel Status</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/operations">Operations</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/loadouts">Equipment Loadouts</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/disciplinary">Disciplinary Action</a></li>
-  <li routerLinkActive="uk-active"><a routerLink="/platoon/briefings">Briefings and Materials</a></li>
+  <li class="uk-nav-header" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership">Platoon Leadership</li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/personnel-files">Personnel Files</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/personnel-files">Personnel Assignments</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/perstat">Personnel Status</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/operations">Operations</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/loadouts">Equipment Loadouts</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/disciplinary">Disciplinary Action</a></li>
+  <li routerLinkActive="uk-active" *ngIf="current_user.position && current_user.position.permissions.is_platoon_leadership"><a routerLink="/platoon/briefings">Briefings and Materials</a></li>
 
   <li class="uk-nav-header" *ngIf="current_user.permissions.is_drill_instructor">Drill Instructor</li>
   <li routerLinkActive="uk-active" *ngIf="current_user.permissions.is_drill_instructor"><a routerLink="/di/training-rotation">Training Scheduling</a></li>

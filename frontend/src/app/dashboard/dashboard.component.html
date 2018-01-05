@@ -8,11 +8,19 @@
       <div class="uk-card uk-card-default uk-card-body uk-text-center" style="margin-bottom: 30px" *ngIf="!is_loading">
         <h3 class="uk-card-title" style="margin-bottom: 5px;">{{current_user.rank.name}}</h3>
         <h3 class="uk-card-title" style="margin-top: 10px; margin-bottom: 5px;">{{current_user.name.full}}</h3>
-        <h3 class="uk-text-meta" style="margin-top: 10px; margin-bottom: 5px;">Platoon Leader</h3>
-        <h3 class="uk-text-meta" style="margin-top: 10px;">1st Platoon</h3>
+        <h3 class="uk-text-meta" style="margin-top: 10px; margin-bottom: 5px;">{{current_user.position ? current_user.position.name : "Pending Assignment"}}</h3>
+        <h3 class="uk-text-meta" style="margin-top: 10px;">{{current_user.position ? current_user.position.parent_formation.name : "" }}</h3>
       </div>
       <div class="uk-card uk-card-default uk-card-body uk-text-center" style="margin-bottom: 30px" *ngIf="is_loading">
-        <div uk-spinner></div>
+        <div class="uk-spinner uk-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" ratio="1">
+            <circle fill="none" stroke="#000" cx="15" cy="15" r="14"></circle>
+          </svg>
+        </div>
+      </div>
+      <div class="uk-card uk-card-default uk-card-body uk-text-center" style="margin-bottom: 30px" *ngIf="!is_loading && current_user.accountability_status === 'absent'">
+        <h3 class="uk-card-title uk-text-danger" style="margin-bottom: 5px;">You have not reported in!</h3>
+        <a class="uk-button uk-button-danger" (click)="reportIn()">Report In</a>
       </div>
     </div>
     <div class="uk-width-2-3@m">

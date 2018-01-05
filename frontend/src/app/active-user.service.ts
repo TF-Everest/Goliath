@@ -4,12 +4,14 @@ import { JwtHelper } from "angular2-jwt"
 import { Observable } from "rxjs/Observable"
 import "rxjs/add/observable/of"
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/switchMap'
 import { environment } from "../environments/environment"
 
 @Injectable()
 export class ActiveUserService {
 
   private active_user: {
+    id: number,
     name: {
       first: string,
       last: string,
@@ -35,10 +37,6 @@ export class ActiveUserService {
 
   getCurrentUser() {
 
-    if ( this.active_user ) {
-      return Observable.of(this.active_user)
-    }
-
     let token = this.jwt_helper.decodeToken(localStorage.getItem("token"))
 
     return this.http.get(`${environment.api_address}/users/${token.user_id}`).map((res: any) => {
@@ -46,6 +44,13 @@ export class ActiveUserService {
       return res.data
     })
 
+  }
+
+  reportIn() {
+    return this.http.post(`${environment.api_address}/users/${this.active_user.id}/accountability`, {})
+      .switchMap((res: any) => {
+        return this.getCurrentUser()
+      })
   }
 
   clearUser() {
